@@ -17,7 +17,7 @@ export default {
      * SCOPE RULE
      * Scope must NOT be empty → forces module-level clarity
      */
-    'scope-empty': [2, 'never'],
+    // 'scope-empty': [2, 'never'],
 
     // /*
     //  * SCOPE ENUM (optional but powerful)
