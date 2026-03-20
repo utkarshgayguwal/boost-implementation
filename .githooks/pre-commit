@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Running Pint..."
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php$")
+
+if [ -z "$FILES" ]; then
+    exit 0
+fi
+
+./vendor/bin/pint --dirty
+
+git add $FILES
+
+echo "Formatting applied."
