@@ -64,12 +64,47 @@ feat(auth): add user registration with very long description that exceeds the ma
 
 ## Installation
 
-If commitlint is not set up:
+### 1. Install commitlint
 
 ```bash
-npm install -D @commitlint/cli @commitlint/config-conventional husky
-npx husky init
-echo "npx --no -- commitlint --edit \$1" > .husky/commit-msg
+npm install -D @commitlint/cli @commitlint/config-conventional
+```
+
+### 2. Configure Git to use custom hooks directory
+
+Create or edit `.git/config` in your project root:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Or set globally for all repos:
+
+```bash
+git config --global core.hooksPath .githooks
+```
+
+### 3. Create the hook file
+
+```bash
+mkdir -p .githooks
+touch .githooks/commit-msg
+chmod +x .githooks/commit-msg
+```
+
+### 4. Add commitlint to the hook
+
+```bash
+echo 'npx --no -- commitlint --edit "$1"' > .githooks/commit-msg
+```
+
+### 5. Commit the hooks directory (optional, for team sharing)
+
+Add `.githooks/` to git and commit it so teammates get the hooks automatically:
+
+```bash
+git add .githooks/
+git commit -m "chore: add commitlint hooks"
 ```
 
 ## Testing Commits
